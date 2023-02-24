@@ -1,5 +1,5 @@
 uglyURLs = true
-baseURL = "http://localhost:1313/"
+baseURL = "https://blog.opsta.cn"
 languageCode = "en"
 defaultContentLanguageInSubdir= true
 defaultContentLanguage = "zh-cn"                             # en / zh-cn / ... (This field determines which i18n file to use)
