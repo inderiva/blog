@@ -3,7 +3,7 @@ archive:
   other: "Archivo"
 
 tags:
-  other: "Tags"
+  other: "Etiquetas"
 
 categories:
   other: "Categorías"
@@ -41,7 +41,7 @@ toc:
   other: "Contenidos"
 
 readMore:
-  other: "Leer mas.."
+  other: "Leer mas..."
 
 reward:
   other: "Reward"
@@ -59,6 +59,12 @@ wordCount:
 readingTime:
   one: "{{ .Count }} min lectura"
   other: "{{ .Count }} mins lectura"
+
+outdatedInfoWarningBefore:
+  other: "[NOTE] Updated "
+
+outdatedInfoWarningAfter:
+  other: ". This article may have outdated content or subject matter."
 
 # ===== content license =====
 author:
