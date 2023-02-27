@@ -19,7 +19,7 @@ pygmentsCodefencesGuessSyntax = true
 hasCJKLanguage = true     # has chinese/japanese/korean ? # 自动检测是否包含 中文\日文\韩文
 paginate = 5                                              # 首页每页显示的文章数
 disqusShortname = ""      # disqus_shortname
-googleAnalytics = ""      # UA-XXXXXXXX-X
+googleAnalytics = "G-G66E0S7D7E"      # UA-XXXXXXXX-X
 copyright = "inderiva"            # default: author.name ↓        # 默认为下面配置的author.name ↓
 
 [author]                  # essential                     # 必需
@@ -104,14 +104,14 @@ copyright = "inderiva"            # default: author.name ↓        # 默认为�
   baiduPush = false        # baidu push                  # 百度
   baiduAnalytics = ""      # Baidu Analytics
   baiduVerification = ""   # Baidu Verification
-  googleVerification = ""  # Google Verification         # 谷歌
+  googleVerification = "true"  # Google Verification         # 谷歌
 
   # Link custom CSS and JS assets
   #   (relative to /static/css and /static/js respectively)
   customCSS = []
   customJS = []
 
-  uglyURLs = false          # please keep same with uglyurls setting
+ # uglyURLs = false          # please keep same with uglyurls setting
 
   # Show language selector for multilingual site.
   showLanguageSelector = false
