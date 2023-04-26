@@ -87,7 +87,7 @@ services:
 
 4、启动compose 项目（docker-compose up）
 
-![docker_2020-07-30_17-47-39](https://cdn.jsdelivr.net/gh/meethong/images@latest/docker/docker_2020-07-30_17-47-39.png)
+![docker_2020-07-30_17-47-39](https://fastly.jsdelivr.net/gh/meethong/images@latest/docker/docker_2020-07-30_17-47-39.png)
 
 流程：
 
