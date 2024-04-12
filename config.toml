@@ -1,5 +1,5 @@
 uglyURLs = true
-baseURL = "https://blog.opsta.cn"
+baseURL = "https://blog.inderiva.eu.org"
 languageCode = "en"
 defaultContentLanguageInSubdir= true
 defaultContentLanguage = "en"                             # en / zh-cn / ... (This field determines which i18n file to use)
