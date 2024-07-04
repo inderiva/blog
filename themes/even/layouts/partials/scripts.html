@@ -16,8 +16,8 @@
 {{- end -}}
 
 <!-- timeago.JS -->
-{{- if and (or .Params.enableOutdatedInfoWarning (and .Site.Params.outdatedInfoWarning.enable (ne
-.Params.enableOutdatedInfoWarning false))) (or .IsPage .IsHome) }}
+{{- if and (or .Params.enableOutdatedInfoWarning (and .Site.Params.outdatedInfoWarning.enable
+(ne.Params.enableOutdatedInfoWarning false))) (or .IsPage .IsHome) }}
 {{- if .Site.Params.publicCDN.enable }}
 {{ .Site.Params.publicCDN.timeagoJS | safeHTML }}
 {{ .Site.Params.publicCDN.timeagoLocalesJS | safeHTML }}
@@ -33,8 +33,8 @@
 {{- end -}}
 
 <!-- flowchart -->
-{{- if and (or .Params.flowchartDiagrams.enable (and .Site.Params.flowchartDiagrams.enable (ne
-.Params.flowchartDiagrams.enable false))) (or .IsPage .IsHome) -}}
+{{- if and (or .Params.flowchartDiagrams.enable (and .Site.Params.flowchartDiagrams.enable
+(ne.Params.flowchartDiagrams.enable false))) (or .IsPage .IsHome) -}}
 <script>
   { { - if .Params.flowchartDiagrams.options -} }
   window.flowchartDiagramsOptions = {{ .Params.flowchartDiagrams.options | safeJS }};
@@ -53,8 +53,8 @@
 {{- end -}}
 
 <!-- js-sequence-diagrams -->
-{{- if and (or .Params.sequenceDiagrams.enable (and .Site.Params.sequenceDiagrams.enable (ne
-.Params.sequenceDiagrams.enable false))) (or .IsPage .IsHome) -}}
+{{- if and (or .Params.sequenceDiagrams.enable (and .Site.Params.sequenceDiagrams.enable
+(ne.Params.sequenceDiagrams.enable false))) (or .IsPage .IsHome) -}}
 <script>
   { { - if .Params.sequenceDiagrams.options -} }
   window.sequenceDiagramsOptions = {{ .Params.sequenceDiagrams.options | safeJS }};
@@ -121,7 +121,98 @@
 </script>
 {{- end -}}
 
+<script>
+  async function sha256(str) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(str);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+  }
 
+  async function getAISummary() {
+    const postContent = document.querySelector('.post-content').innerText;
+
+    // 修改这里来去掉 "/post/" 前缀
+    const fullPath = window.location.pathname;
+    let postId = fullPath.startsWith('/post/') ? fullPath.substring(6) : fullPath.substring(1);
+    postId = postId.endsWith('.html') ? postId.slice(0, -5) : postId;
+    try {
+      // 上传文章内容
+      const uploadResponse = await fetch('https://blog-ai.inderiva.eu.org/upload_blog?id=' + encodeURIComponent(postId), {
+        method: 'POST',
+        body: postContent,
+        mode: 'cors' // 确保使用 CORS 模式
+      });
+
+      if (!uploadResponse.ok) {
+        throw new Error('Upload failed: ' + uploadResponse.statusText);
+      }
+
+      // 计算内容的 SHA-256 哈希
+      const contentHash = await sha256(postContent);
+
+      // 检查是否已经有摘要
+      const checkResponse = await fetch('https://blog-ai.inderiva.eu.org/is_uploaded?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+        mode: 'cors'
+      });
+
+      if (!checkResponse.ok) {
+        throw new Error('Check failed: ' + checkResponse.statusText);
+      }
+
+      const isUploaded = await checkResponse.text();
+
+      if (isUploaded === 'yes') {
+        // 如果已上传，获取摘要
+        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/get_summary?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+          mode: 'cors'
+        });
+
+        if (!summaryResponse.ok) {
+          throw new Error('Summary fetch failed: ' + summaryResponse.statusText);
+        }
+
+        const summary = await summaryResponse.text();
+        updateSummary(summary);
+      } else {
+        // 如果没有摘要，请求生成新的摘要
+        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/summary?id=' + encodeURIComponent(postId), {
+          mode: 'cors'
+        });
+
+        if (!summaryResponse.ok) {
+          throw new Error('Summary generation failed: ' + summaryResponse.statusText);
+        }
+
+        const reader = summaryResponse.body.getReader();
+        const decoder = new TextDecoder();
+        let summary = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          summary += decoder.decode(value);
+          updateSummary(summary);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching AI summary:', error);
+      updateSummary('无法生成摘要：' + error.message);
+    }
+  }
+
+  function updateSummary(summary) {
+    const summaryElement = document.getElementById('ai-summary-content');
+    if (summaryElement) {
+      summaryElement.innerText = summary;
+    } else {
+      console.error('Element with id "ai-summary-content" not found');
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', getAISummary);
+</script>
 
 <!-- custom js -->
 {{ range .Site.Params.customJS -}}
