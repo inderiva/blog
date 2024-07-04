@@ -45,7 +45,7 @@ ping: tomcat01: Name or service not known
 
 > 查看所有的 docker 网络
 
-![docker_2020-06-25_23-00-38](https://i.opsta.cn/docker/docker_2020-06-25_23-00-38.png)
+![docker_2020-06-25_23-00-38](https://i.inderiva.eu.org/docker/docker_2020-06-25_23-00-38.png)
 
 **网络模式**
 
@@ -68,11 +68,11 @@ ping: tomcat01: Name or service not known
 docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.0.1 mynet
 ```
 
-![docker_2020-06-25_23-15-56](https://i.opsta.cn/docker/docker_2020-06-25_23-15-56.png)
+![docker_2020-06-25_23-15-56](https://i.inderiva.eu.org/docker/docker_2020-06-25_23-15-56.png)
 
 配置完网络就可以直接ping通了
 
-![docker_2020-06-25_23-17-54](https://i.opsta.cn/docker/docker_2020-06-25_23-17-54.png)
+![docker_2020-06-25_23-17-54](https://i.inderiva.eu.org/docker/docker_2020-06-25_23-17-54.png)
 
 ## 网络连通
 
@@ -82,4 +82,4 @@ docker network create --driver bridge --subnet 192.168.0.0/16 --gateway 192.168.
 #即一个容器两个ip 地址
 ```
 
-![docker_2020-06-25_23-30-29](https://i.opsta.cn/docker/docker_2020-06-25_23-30-29.png) 
+![docker_2020-06-25_23-30-29](https://i.inderiva.eu.org/docker/docker_2020-06-25_23-30-29.png) 

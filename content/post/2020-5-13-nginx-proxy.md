@@ -69,7 +69,7 @@ yum install -y zlib zlib-devel
 --add-module=../ngx_http_google_filter_module \
 ```
 
-![nginx编译成功](https://i.opsta.cn/nginx/nginx-proxy-build.webp)
+![nginx编译成功](https://i.inderiva.eu.org/nginx/nginx-proxy-build.webp)
 
 ```
 make && make install  #安装
@@ -77,7 +77,7 @@ make && make install  #安装
 
 查看模块是否已经安装上
 
-![查看nginx安装的模块](https://i.opsta.cn/nginx/nginx-proxy-version.webp)
+![查看nginx安装的模块](https://i.inderiva.eu.org/nginx/nginx-proxy-version.webp)
 
 ## 配置nginx
 

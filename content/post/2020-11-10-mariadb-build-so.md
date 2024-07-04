@@ -20,16 +20,16 @@ SET(CMAKE_BUILD_WITH_INSTALL_RPATH TRUE)
 SET(CMAKE_INSTALL_RPATH "\${ORIGIN}/../lib-ext")
 ```
 
-![mariadb-20201111162401394](https://i.opsta.cn/mariadb/mariadb-20201111162401394.png)
+![mariadb-20201111162401394](https://i.inderiva.eu.org/mariadb/mariadb-20201111162401394.png)
 
 默认情况下，**MariaDB** 加载的是系统的**so**
 
-![Mariadb_2020-11-10_14-15-55](https://i.opsta.cn/mariadb/Mariadb_2020-11-10_14-15-55.png)
+![Mariadb_2020-11-10_14-15-55](https://i.inderiva.eu.org/mariadb/Mariadb_2020-11-10_14-15-55.png)
 
 当**lib-ext**目录下放置**so**文件之后，他会去**lib-ext**目录下加载相关**so**，这样就有效的解决了缺**so**的问题了
 
-![Mariadb_2020-11-10_14-15-55](https://i.opsta.cn/mariadb/Mariadb_2020-11-10_14-15-56.png)
+![Mariadb_2020-11-10_14-15-55](https://i.inderiva.eu.org/mariadb/Mariadb_2020-11-10_14-15-56.png)
 
 **rpmbuild** 打包过程中可能会出现检查**so**路径的问题，将校验的配置注释即可
 
-![mariadb_2020-11-11_16-36-50](https://i.opsta.cn/mariadb/mariadb_2020-11-11_16-36-50.png)
+![mariadb_2020-11-11_16-36-50](https://i.inderiva.eu.org/mariadb/mariadb_2020-11-11_16-36-50.png)

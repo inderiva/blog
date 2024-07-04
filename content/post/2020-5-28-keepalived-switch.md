@@ -84,13 +84,13 @@ fi
 
 把**KEEPALIVED_OPTIONS="-D"** 修改为：**KEEPALIVED_OPTIONS="-D -d -S 0"**
 
-![keepalived-log](https://i.opsta.cn/keepalived/keepalived-log.png)
+![keepalived-log](https://i.inderiva.eu.org/keepalived/keepalived-log.png)
 
 再修改**/etc/rsyslog.conf** 
 
 添加   **local0.*                                                /var/log/keepalived.log**
 
-![image-20200528105508482](https://i.opsta.cn/rsyslog/rsyslog-keepalived-log.png)
+![image-20200528105508482](https://i.inderiva.eu.org/rsyslog/rsyslog-keepalived-log.png)
 
 目前的日志在:**/var/log/keepalived.log** 
 
@@ -98,11 +98,11 @@ fi
 
 **master切换**
 
-![76](https://i.opsta.cn/keepalived/keepalived-switch-master.png)
+![76](https://i.inderiva.eu.org/keepalived/keepalived-switch-master.png)
 
 **buckup切换**
 
-![77](https://i.opsta.cn/keepalived/keepalived-switch-buckup.png)
+![77](https://i.inderiva.eu.org/keepalived/keepalived-switch-buckup.png)
 
 ## 参考
 

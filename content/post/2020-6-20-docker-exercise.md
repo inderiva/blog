@@ -146,7 +146,7 @@ local               nginx
 #查看挂载路径
 ```
 
-![image-20200620220843507](https://i.opsta.cn/docker/docker-volumes-nginx.png))
+![image-20200620220843507](https://i.inderiva.eu.org/docker/docker-volumes-nginx.png))
 
 所有docker容器内的卷,没有指定目录的情况下都是在/var/lib/docker/volumes/***/_data
 

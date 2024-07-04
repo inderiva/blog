@@ -16,7 +16,7 @@ title: rpmbuild打包mariadb集群
 
 把so放到mariadb目录下，修改my.cnf配置的路径
 
-![](https://i.opsta.cn/img/rpmbuild-mariadb-my.cnf.png)
+![](https://i.inderiva.eu.org/img/rpmbuild-mariadb-my.cnf.png)
 
 编写master启动脚本
 

@@ -50,11 +50,11 @@ windows10的docker使用的是Hyper-V虚拟机，所以镜像存放的目录就�
 
 右键选择Hyper-V设置
 
-![docker_2020-07-04_20-38-13](https://i.opsta.cn/docker/docker_2020-07-04_20-38-13.png)
+![docker_2020-07-04_20-38-13](https://i.inderiva.eu.org/docker/docker_2020-07-04_20-38-13.png)
 
 然后docker跟他设置一样重启就行
 
-![docker_2020-07-04_20-39-30](https://i.opsta.cn/docker/docker_2020-07-04_20-39-30.png)
+![docker_2020-07-04_20-39-30](https://i.inderiva.eu.org/docker/docker_2020-07-04_20-39-30.png)
 
 ## 报错
 

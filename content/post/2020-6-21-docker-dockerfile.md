@@ -36,7 +36,7 @@ CMD echo "-------->end<------"
 CMD /bin/bash
 ```
 
-![docker-dockerfile-centos-ops](https://i.opsta.cn/docker/docker-dockerfile-centos-ops.png)
+![docker-dockerfile-centos-ops](https://i.inderiva.eu.org/docker/docker-dockerfile-centos-ops.png)
 
 
 
@@ -54,7 +54,7 @@ CMD /bin/bash
 
 5、常见指令
 
-![docker-dockerfile](https://i.opsta.cn/docker/docker-dockerfile.png)
+![docker-dockerfile](https://i.inderiva.eu.org/docker/docker-dockerfile.png)
 
 ```shell
 FROM		#基础镜像，一切从这里开始
@@ -231,7 +231,7 @@ docker run -d -p 9090:8080 --name tomcat -v /opt/tomcat/test/:/usr/local/apache-
 
 5、测试访问
 
-![docker-dockerfile-tomcat-quickstart](https://i.opsta.cn/docker/docker-dockerfile-tomcat-quickstart.png)
+![docker-dockerfile-tomcat-quickstart](https://i.inderiva.eu.org/docker/docker-dockerfile-tomcat-quickstart.png)
 
 ## 发布镜像
 

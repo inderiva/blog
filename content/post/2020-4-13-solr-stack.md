@@ -27,8 +27,8 @@ Error: A fatal exception has occurred. Program will exit.
 vim solr/bin/solr
 ```
 
-![solr文件](https://i.opsta.cn/img/20200414101330.png)
+![solr文件](https://i.inderiva.eu.org/img/20200414101330.png)
 
 修改256为1024即可 再启动
 
-![solr启动](https://i.opsta.cn/img/solr-stack-start.png)
+![solr启动](https://i.inderiva.eu.org/img/solr-stack-start.png)

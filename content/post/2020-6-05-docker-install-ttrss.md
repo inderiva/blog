@@ -47,7 +47,7 @@ docker-compose up --build
 
 访问页面
 
-![](https://i.opsta.cn/tt-rss/tt-rss-install-ok.png)
+![](https://i.inderiva.eu.org/tt-rss/tt-rss-install-ok.png)
 
 ```
 默认管理员密码:admin/password
@@ -55,11 +55,11 @@ docker-compose up --build
 
 登陆自己导入一些订阅源 舒服了舒服了
 
-![](https://i.opsta.cn/tt-rss/tt-rss-install-load.png)
+![](https://i.inderiva.eu.org/tt-rss/tt-rss-install-load.png)
 
 可以把`Postgresql`从`Docker`中映射出来方便备份恢复 修改`docker-compose.yml`
 
-![](https://i.opsta.cn/tt-rss/tt-rss-postgresql-up.png)
+![](https://i.inderiva.eu.org/tt-rss/tt-rss-postgresql-up.png)
 
 #### 更新容器脚本
 

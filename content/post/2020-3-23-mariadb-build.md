@@ -103,7 +103,7 @@ innodb_autoinc_lock_mode=2#2为性能最好
 log-error       =/opt/eetrust/mmeethong/data/mariadb.log
 ```
 
-![](https://i.opsta.cn/img/mariadb-build-my-cnf.png)
+![](https://i.inderiva.eu.org/img/mariadb-build-my-cnf.png)
 
 ```
 第一台用这个命令启动

@@ -114,7 +114,7 @@ systemctl restart docker
 docker run hello-world
 ```
 
-![docker-helloworld](https://i.opsta.cn/docker/docker-helloworld.png)
+![docker-helloworld](https://i.inderiva.eu.org/docker/docker-helloworld.png)
 
 ```shell
 # 8 查看docker镜像
@@ -220,7 +220,7 @@ docker.io/library/mysql:5.7
 
 ```
 
-![docker-images-mysql](https://i.opsta.cn/docker/docker-images-mysql.png)
+![docker-images-mysql](https://i.inderiva.eu.org/docker/docker-images-mysql.png)
 
 ### docker rmi 删除镜像
 

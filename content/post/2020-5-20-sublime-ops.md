@@ -26,7 +26,7 @@ title: Sublime小技巧
 ctrl +Shift + p
 ```
 
-![image-20200523105141732](https://i.opsta.cn/sublime/sublime-install.png)
+![image-20200523105141732](https://i.inderiva.eu.org/sublime/sublime-install.png)
 
 回车 之后输入ConvertToUTF8 再 回车 就行
 
