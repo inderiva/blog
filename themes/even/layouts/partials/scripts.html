@@ -122,67 +122,72 @@
 {{- end -}}
 
 <script>
-  async function sha256(str) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(str);
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+  // SHA-256 哈希函数
+  async function sha256(message) {
+    const msgBuffer = new TextEncoder().encode(message);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
     const hashArray = Array.from(new Uint8Array(hashBuffer));
     return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
   }
 
+  // 获取 AI 摘要的主函数
   async function getAISummary() {
     const postContent = document.querySelector('.post-content').innerText;
 
-    // 修改这里来去掉 "/post/" 前缀
+    // 获取文章 ID
     const fullPath = window.location.pathname;
     let postId = fullPath.startsWith('/post/') ? fullPath.substring(6) : fullPath.substring(1);
     postId = postId.endsWith('.html') ? postId.slice(0, -5) : postId;
+
     try {
+      // 显示加载状态
+      updateSummary('正在生成摘要，请稍候...');
+
       // 上传文章内容
-      const uploadResponse = await fetch('https://summary.mayx.eu.org/upload_blog?id=' + encodeURIComponent(postId), {
+      const uploadResponse = await fetch('https://blog-ai.inderiva.eu.org/upload_blog?id=' + encodeURIComponent(postId), {
         method: 'POST',
         body: postContent,
-        mode: 'cors' // 确保使用 CORS 模式
+        mode: 'cors'
       });
 
       if (!uploadResponse.ok) {
-        throw new Error('Upload failed: ' + uploadResponse.statusText);
+        throw new Error('上传失败: ' + uploadResponse.statusText);
       }
 
       // 计算内容的 SHA-256 哈希
       const contentHash = await sha256(postContent);
 
       // 检查是否已经有摘要
-      const checkResponse = await fetch('https://summary.mayx.eu.org/is_uploaded?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+      const checkResponse = await fetch('https://blog-ai.inderiva.eu.org/is_uploaded?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
         mode: 'cors'
       });
 
       if (!checkResponse.ok) {
-        throw new Error('Check failed: ' + checkResponse.statusText);
+        throw new Error('检查失败: ' + checkResponse.statusText);
       }
 
       const isUploaded = await checkResponse.text();
 
       if (isUploaded === 'yes') {
         // 如果已上传，获取摘要
-        const summaryResponse = await fetch('https://summary.mayx.eu.org/get_summary?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/get_summary?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
           mode: 'cors'
         });
 
         if (!summaryResponse.ok) {
-          throw new Error('Summary fetch failed: ' + summaryResponse.statusText);
+          throw new Error('获取摘要失败: ' + summaryResponse.statusText);
         }
 
         const summary = await summaryResponse.text();
         updateSummary(summary);
       } else {
         // 如果没有摘要，请求生成新的摘要
-        const summaryResponse = await fetch('https://summary.mayx.eu.org/summary?id=' + encodeURIComponent(postId), {
+        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/summary?id=' + encodeURIComponent(postId), {
           mode: 'cors'
         });
 
         if (!summaryResponse.ok) {
-          throw new Error('Summary generation failed: ' + summaryResponse.statusText);
+          throw new Error('生成摘要失败: ' + summaryResponse.statusText);
         }
 
         const reader = summaryResponse.body.getReader();
@@ -197,23 +202,50 @@
         }
       }
     } catch (error) {
-      console.error('Error fetching AI summary:', error);
+      console.error('获取 AI 摘要时出错:', error);
       updateSummary('无法生成摘要：' + error.message);
     }
   }
 
+  // 更新摘要显示
   function updateSummary(summary) {
     const summaryElement = document.getElementById('ai-summary-content');
-    const formattedSummary = `summary: |-\n  ${summary.replace(/\n/g, '\n  ')}`;
-    summaryElement.textContent = formattedSummary;
     if (summaryElement) {
-      summaryElement.innerText = summary;
+      summaryElement.textContent = summary;
     } else {
-      console.error('Element with id "ai-summary-content" not found');
+      console.error('未找到 id 为 "ai-summary-content" 的元素');
     }
   }
 
+  // 在 DOM 加载完成后执行
   document.addEventListener('DOMContentLoaded', getAISummary);
+
+  // 添加样式
+  // 添加样式
+  const style = document.createElement('style');
+  style.textContent = `
+  .ai-summary {
+    background-color: #f8f5ec;
+    border: 1px solid #e9ecef;
+    border-radius: 4px;
+    padding: 15px;
+    margin-top: 20px;
+  }
+  .ai-summary h3 {
+    margin-top: 0;
+    color: #495057;
+  }
+  #ai-summary-content {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #212529;
+  }
+`;
+  document.head.appendChild(style);
+
 </script>
 
 <!-- custom js -->
