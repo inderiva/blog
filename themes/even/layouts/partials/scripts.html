@@ -139,7 +139,7 @@
     postId = postId.endsWith('.html') ? postId.slice(0, -5) : postId;
     try {
       // 上传文章内容
-      const uploadResponse = await fetch('https://blog-ai.inderiva.eu.org/upload_blog?id=' + encodeURIComponent(postId), {
+      const uploadResponse = await fetch('https://summary.mayx.eu.org/upload_blog?id=' + encodeURIComponent(postId), {
         method: 'POST',
         body: postContent,
         mode: 'cors' // 确保使用 CORS 模式
@@ -153,7 +153,7 @@
       const contentHash = await sha256(postContent);
 
       // 检查是否已经有摘要
-      const checkResponse = await fetch('https://blog-ai.inderiva.eu.org/is_uploaded?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+      const checkResponse = await fetch('https://summary.mayx.eu.org/is_uploaded?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
         mode: 'cors'
       });
 
@@ -165,7 +165,7 @@
 
       if (isUploaded === 'yes') {
         // 如果已上传，获取摘要
-        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/get_summary?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
+        const summaryResponse = await fetch('https://summary.mayx.eu.org/get_summary?id=' + encodeURIComponent(postId) + '&sign=' + encodeURIComponent(contentHash), {
           mode: 'cors'
         });
 
@@ -177,7 +177,7 @@
         updateSummary(summary);
       } else {
         // 如果没有摘要，请求生成新的摘要
-        const summaryResponse = await fetch('https://blog-ai.inderiva.eu.org/summary?id=' + encodeURIComponent(postId), {
+        const summaryResponse = await fetch('https://summary.mayx.eu.org/summary?id=' + encodeURIComponent(postId), {
           mode: 'cors'
         });
 
@@ -204,6 +204,8 @@
 
   function updateSummary(summary) {
     const summaryElement = document.getElementById('ai-summary-content');
+    const formattedSummary = `summary: |-\n  ${summary.replace(/\n/g, '\n  ')}`;
+    summaryElement.textContent = formattedSummary;
     if (summaryElement) {
       summaryElement.innerText = summary;
     } else {
